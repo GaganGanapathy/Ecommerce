@@ -1,1 +1,4 @@
-It was pretty easy to setup the structure as the code was alredy done in the frontend module and also been coding in react for a quite a while.
+Struggled a bit in some feature to implement and had a great experience doing it.
+Things i'll be implmenting further for now:
+Fully integrate stripe 
+Add admin board to see the order list 
