@@ -16,19 +16,22 @@ function Signup() {
       if (password !== confirmPassword) {
         swal.fire({
           icon: "error",
-          title: "Password did not match",
+          title: "Password did not match"
         })
         return
       }
-      const result = await axios.post("http://localhost:4000/signup", {
-        name,
-        email,
-        password,
-      })
+      const result = await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/signup`,
+        {
+          name,
+          email,
+          password
+        }
+      )
       if (result.status == 201) {
         swal.fire({
           icon: "success",
-          title: "User registered succesfully",
+          title: "User registered succesfully"
         })
         setName("")
         setEmail("")
@@ -39,7 +42,7 @@ function Signup() {
     } catch (err) {
       swal.fire({
         icon: "error",
-        title: err.response.data.error,
+        title: err.response.data.error
       })
     }
   }

@@ -17,21 +17,24 @@ function Login() {
     try {
       e.preventDefault()
       setLoading(true)
-      const result = await axios.post("http://localhost:4000/login", {
-        email,
-        password,
-      })
+      const result = await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/login`,
+        {
+          email,
+          password
+        }
+      )
       if (result.status === 200) {
         setLoading(false)
         dispatch(
           loginSuccess({
             user: result.data.result.user,
-            token: result.data.result.token,
+            token: result.data.result.token
           })
         )
         Swal.fire({
           icon: "success",
-          title: "Looged in successfully",
+          title: "Looged in successfully"
         })
         navigate("/")
       }
@@ -40,7 +43,7 @@ function Login() {
     } catch (err) {
       Swal.fire({
         icon: "error",
-        title: err.response.data.error,
+        title: err.response.data.error
       })
     }
   }

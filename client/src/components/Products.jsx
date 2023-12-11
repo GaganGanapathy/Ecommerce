@@ -11,7 +11,9 @@ function Products() {
 
   useEffect(() => {
     const productData = async () => {
-      const result = await axios.get(`http://localhost:4000/for/${gender}`)
+      const result = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/for/${gender}`
+      )
       setItems(result.data.productDetail)
     }
     productData()

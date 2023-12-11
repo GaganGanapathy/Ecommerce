@@ -36,24 +36,30 @@ function ProductDetail() {
   }, [])
 
   async function productDetails() {
-    const result = await axios.post("http://localhost:4000/productDetails", {
-      id: productId,
-    })
+    const result = await axios.post(
+      `${import.meta.env.VITE_API_BASE_URL}/productDetails`,
+      {
+        id: productId
+      }
+    )
     setProduct(result.data.product)
   }
 
   const handleDelete = async (id) => {
     try {
-      const result = await axios.delete(`http://localhost:4000/review/${id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        },
-      })
+      const result = await axios.delete(
+        `${import.meta.env.VITE_API_BASE_URL}/review/${id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token
+          }
+        }
+      )
       if (result.status === 200) {
         Swal.fire({
           icon: "success",
-          title: "Post deleted successfully",
+          title: "Post deleted successfully"
         })
         getReviews()
       }
@@ -64,9 +70,12 @@ function ProductDetail() {
 
   const getReviews = async () => {
     try {
-      const reviews = await axios.post("http://localhost:4000/reviews", {
-        productId,
-      })
+      const reviews = await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/reviews`,
+        {
+          productId
+        }
+      )
       setReviews(reviews.data.reviews)
     } catch (err) {
       console.log(err)
@@ -79,28 +88,28 @@ function ProductDetail() {
       if (!currentUser) {
         Swal.fire({
           icon: "error",
-          title: "Please log in",
+          title: "Please log in"
         })
         return
       }
       const newReview = axios.post(
-        "http://localhost:4000/review",
+        `${import.meta.env.VITE_API_BASE_URL}/review`,
         {
           productId,
           review,
-          rating,
+          rating
         },
         {
           headers: {
             "Content-type": "application/json",
-            Authorization: "Bearer " + token,
-          },
+            Authorization: "Bearer " + token
+          }
         }
       )
       if (newReview) {
         Swal.fire({
           icon: "success",
-          title: "Rating added successfully",
+          title: "Rating added successfully"
         })
         getReviews()
         setReview("")

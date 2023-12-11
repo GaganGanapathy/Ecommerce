@@ -11,7 +11,9 @@ function CategoryProduct() {
 
   useEffect(() => {
     const productData = async () => {
-      const result = await axios.get(`http://localhost:4000/in/${subCategory}`)
+      const result = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/in/${subCategory}`
+      )
       console.log(subCategory)
       setItems(result.data.details)
     }

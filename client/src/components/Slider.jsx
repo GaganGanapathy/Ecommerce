@@ -9,7 +9,9 @@ function Slider({ phrase }) {
 
   useEffect(() => {
     const productDetaiils = async () => {
-      const products = await axios.get("http://localhost:4000/getProduct")
+      const products = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/getProduct`
+      )
       setProductsInfo(products.data.result)
     }
     productDetaiils()
